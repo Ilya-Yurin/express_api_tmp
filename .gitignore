@@ -1,0 +1,11 @@
+# System files #
+.DS_Store
+
+# IDE #
+.idea/
+
+# Logs #
+/npm-debug.log.*
+
+# NPM modules #
+node_modules
