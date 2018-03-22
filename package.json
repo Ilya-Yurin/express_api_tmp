@@ -4,7 +4,8 @@
   "description": "REST API applecation",
   "main": "bin/index.js",
   "scripts": {
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "test": "mocha --recursive --compilers js:babel-core/register"
   },
   "repository": {
     "type": "git",
