@@ -4,6 +4,8 @@
   "description": "REST API applecation",
   "main": "bin/index.js",
   "scripts": {
+    "start": "node ./bin/index.js",
+    "dev": "NODE_ENV='development' nodemon ./bin/index.js",
     "lint": "eslint .",
     "test": "mocha --recursive --compilers js:babel-core/register"
   },
