@@ -5,7 +5,6 @@
 
 require('babel-register');
 
-const express = require('express');
 const Logger = require('../lib/logger').default;
 const Server = require('../server/server').default;
 
@@ -15,9 +14,12 @@ const LOG = Logger.getLogger('server');
 if (!process.env.NODE_ENV)
   process.env.NODE_ENV = 'production';
 
-try {
-  Server.getServerInstance(express()).start()
-    .then(() => LOG.info('The server is running...'));
-} catch(error) {
-  LOG.fatal('Couldn\'t not start server: \n', error.stack)
-}
+(async () => {
+  try {
+    await Server.getServerInstance().start();
+    LOG.info('The server is running...');
+  } catch(error) {
+    LOG.fatal('Couldn\'t not start server: \n', error.stack)
+  }
+})();
+

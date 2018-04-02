@@ -1,14 +1,13 @@
 import Server from '../server/server';
-import express from 'express';
 const assert = require('assert');
 
 describe('Loading server', function() {
   let server;
-  before(() => server = Server.getServerInstance(express()));
+  before(() => server = Server.getServerInstance());
   after(() => server.stop());
   
   it('is the only instance', () => {
-    const newInstance = new Server(express());
+    const newInstance = new Server();
     assert.equal(server, newInstance);
   });
   

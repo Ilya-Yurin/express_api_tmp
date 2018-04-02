@@ -1,6 +1,7 @@
 'use strict';
 
 /* Vendor imports */
+import express from 'express';
 import compression from 'compression';
 import bodyParser from 'body-parser';
 import cors from 'cors';
@@ -28,20 +29,23 @@ export default class Server {
     this.server.use(compression());
   }
   
-  static getServerInstance (server) {
+  static getServerInstance () {
     if (Server.instance) {
       return Server.instance;
     }
     else {
-      Server.instance = new Server(server);
+      Server.instance = new Server(express());
       return Server.instance;
     }
-    
   }
   
   start () {
-    return new Promise((resolve) => {
-      this._conn = this.server.listen(CONFIG.server.port, CONFIG.server.host, () => resolve());
+    return new Promise((resolve, reject) => {
+      try {
+        this._conn = this.server.listen(CONFIG.server.port, CONFIG.server.host, () => resolve());
+      } catch (e) {
+        return reject(e);
+      }
     });
   }
   
